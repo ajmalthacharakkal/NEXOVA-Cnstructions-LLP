@@ -1,108 +1,57 @@
-# NEXOVA Constructions LLP Website
+[![npm version](https://img.shields.io/npm/v/@eslint/js.svg)](https://www.npmjs.com/package/@eslint/js)
 
-A modern, premium website for NEXOVA Constructions LLP built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
+# ESLint JavaScript Plugin
 
-## Features
+[Website](https://eslint.org) | [Configure ESLint](https://eslint.org/docs/latest/use/configure) | [Rules](https://eslint.org/docs/rules/) | [Contributing](https://eslint.org/docs/latest/contribute) | [Twitter](https://twitter.com/geteslint) | [Chatroom](https://eslint.org/chat)
 
-- **Responsive Design**: Fully responsive across all devices
-- **Modern UI**: Clean, corporate design with blue, black, and white branding
-- **Smooth Animations**: Framer Motion animations throughout
-- **SEO Optimized**: Meta tags, OpenGraph, and semantic HTML
-- **Commercial Focus**: Specialized content for commercial and industrial construction
+The beginnings of separating out JavaScript-specific functionality from ESLint.
 
-## Tech Stack
+Right now, this plugin contains two configurations:
 
-- **Next.js 14**: React framework with App Router
-- **TypeScript**: Type-safe development
-- **Tailwind CSS**: Utility-first CSS framework
-- **Framer Motion**: Production-ready motion library for React
+* `recommended` - enables the rules recommended by the ESLint team (the replacement for `"eslint:recommended"`)
+* `all` - enables all ESLint rules (the replacement for `"eslint:all"`)
 
-## Getting Started
+## Installation
 
-### Prerequisites
-
-- Node.js 18+ installed
-- npm or yarn package manager
-
-### Installation
-
-1. Navigate to the project directory:
-```bash
-cd nexova-website
+```shell
+npm install @eslint/js -D
 ```
 
-2. Install dependencies:
-```bash
-npm install
+## Usage
+
+Use in your `eslint.config.js` file anytime you want to extend one of the configs:
+
+```js
+import js from "@eslint/js";
+
+export default [
+
+    // apply recommended rules to JS files
+    {
+        files: ["**/*.js"],
+        rules: js.configs.recommended.rules
+    },
+
+    // apply recommended rules to JS files with an override
+    {
+        files: ["**/*.js"],
+        rules: {
+            ...js.configs.recommended.rules,
+            "no-unused-vars": "warn"
+        } 
+    },
+
+    // apply all rules to JS files
+    {
+        files: ["**/*.js"],
+        rules: {
+            ...js.configs.all.rules,
+            "no-unused-vars": "warn"
+        } 
+    }
+]
 ```
-
-3. Run the development server:
-```bash
-npm run dev
-```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-### Build for Production
-
-```bash
-npm run build
-npm start
-```
-
-## Project Structure
-
-```
-nexova-website/
-├── app/
-│   ├── layout.tsx          # Root layout with metadata
-│   ├── page.tsx            # Home page
-│   └── globals.css         # Global styles
-├── components/
-│   ├── Navbar.tsx          # Responsive navigation
-│   ├── Hero.tsx            # Hero section
-│   ├── About.tsx           # About section
-│   ├── Services.tsx        # Services section
-│   ├── Contact.tsx         # Contact section with form
-│   └── Footer.tsx          # Footer component
-├── public/                 # Static assets
-├── tailwind.config.ts      # Tailwind configuration
-├── tsconfig.json           # TypeScript configuration
-└── next.config.js          # Next.js configuration
-```
-
-## Customization
-
-### Brand Colors
-
-The brand colors are defined in `tailwind.config.ts`:
-
-```typescript
-colors: {
-  nexova: {
-    blue: "#0047AB",    // Primary brand color
-    dark: "#0A0A0A",    // Dark backgrounds
-    light: "#FFFFFF",   // Light backgrounds
-    gray: "#F5F5F5"     // Gray backgrounds
-  }
-}
-```
-
-### Contact Information
-
-Update contact details in:
-- `components/Contact.tsx` - Contact section information
-- `components/Footer.tsx` - Footer contact information
-
-## Sections
-
-1. **Navbar**: Responsive navigation with smooth scrolling
-2. **Hero**: Impactful hero section with animated background
-3. **About**: Company overview with statistics
-4. **Services**: Commercial and industrial construction services
-5. **Contact**: Contact form and information
-6. **Footer**: Company links and contact details
 
 ## License
 
-© 2024 NEXOVA Constructions LLP. All rights reserved.
+MIT

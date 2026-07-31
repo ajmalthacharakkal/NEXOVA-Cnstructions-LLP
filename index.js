@@ -1,19 +1,17 @@
 /**
- * @fileoverview `ConfigArray` class.
- * @author Toru Nagashima <https://github.com/mysticatea>
+ * @fileoverview Main package entrypoint.
+ * @author Nicholas C. Zakas
  */
 
-import { ConfigArray, getUsedExtractedConfigs } from "./config-array.js";
-import { ConfigDependency } from "./config-dependency.js";
-import { ExtractedConfig } from "./extracted-config.js";
-import { IgnorePattern } from "./ignore-pattern.js";
-import { OverrideTester } from "./override-tester.js";
+"use strict";
 
-export {
-    ConfigArray,
-    ConfigDependency,
-    ExtractedConfig,
-    IgnorePattern,
-    OverrideTester,
-    getUsedExtractedConfigs
+//------------------------------------------------------------------------------
+// Public Interface
+//------------------------------------------------------------------------------
+
+module.exports = {
+    configs: {
+        all: require("./configs/eslint-all"),
+        recommended: require("./configs/eslint-recommended")
+    }
 };
